@@ -250,11 +250,11 @@ def main():
         try:
             train_loss = 0
             valid_loss = 0
-            # if epoch == 1:
-            #     freeze_layer_names = get_freeze_layer_names(model, part='encoder')
-            #     set_freeze_layers(model, freeze_layer_names=freeze_layer_names)
-            #     #set_train_layers(model, train_layer_names=['module.final.weight','module.final.bias'])
-            #     print_model_summay(model)
+            if epoch == 1:
+                freeze_layer_names = get_freeze_layer_names(model, part='encoder')
+                set_freeze_layers(model, freeze_layer_names=freeze_layer_names)
+                #set_train_layers(model, train_layer_names=['module.final.weight','module.final.bias'])
+                print_model_summay(model)
             # elif epoch == 5:
             #     w1 = 1.0
             #     w2 = 0.0
@@ -263,7 +263,7 @@ def main():
             #     set_freeze_layers(model, freeze_layer_names=freeze_layer_names)
             #     # set_train_layers(model, train_layer_names=['module.final.weight','module.final.bias'])
             #     print_model_summay(model)
-            #elif epoch == 3:
+            # elif epoch == 3:
             #     set_train_layers(model, train_layer_names=['module.dec5.block.0.conv.weight','module.dec5.block.0.conv.bias',
             #                                                'module.dec5.block.1.weight','module.dec5.block.1.bias',
             #                                                'module.dec4.block.0.conv.weight','module.dec4.block.0.conv.bias',
@@ -275,9 +275,9 @@ def main():
             #                                                'module.dec1.conv.weight','module.dec1.conv.bias',
             #                                                'module.final.weight','module.final.bias'])
             #     print_model_summa zvgf    t5y(model)
-            # elif epoch == 50:
-            #     set_freeze_layers(model, freeze_layer_names=None)
-            #     print_model_summay(model)
+            elif epoch == 50:
+                set_freeze_layers(model, freeze_layer_names=None)
+                print_model_summay(model)
             for i, (train_image, train_mask, train_mask_ind) in enumerate(train_loader):
                 # inputs, targets = variable(inputs), variable(targets)
 
