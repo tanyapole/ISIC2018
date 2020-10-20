@@ -24,7 +24,7 @@ from loss import LossBinary
 from dataset import make_loader
 from utils import save_weights, write_event, write_tensorboard,print_model_summay,set_freeze_layers,set_train_layers,get_freeze_layer_names
 from validation import validation_binary
-import transforms
+import transforms as chtfms
 from metrics import AllInOneMeter
 
 
@@ -155,17 +155,17 @@ def main():
     print('--' * 10)
 
 
-    train_transform = transforms.DualCompose([
-        transforms.RandomRotate90(),
-        transforms.RandomHorizontalFlip(),
-        transforms.RandomVerticalFlip(),
-        transforms.RandomBrightness(),
-        transforms.RandomSaturation(),
-        transforms.ImageOnly(transforms.Normalize())
+    train_transform = chtfms.DualCompose([
+        chtfms.RandomRotate90(),
+        chtfms.HorizontalFlip(),
+        chtfms.VerticalFlip(),
+        chtfms.RandomBrightness(),
+        chtfms.RandomSaturation(),
+        chtfms.ImageOnly(chtfms.Normalize())
     ])
 
-    val_transform = transforms.DualCompose([
-        transforms.ImageOnly(transforms.Normalize())
+    val_transform = chtfms.DualCompose([
+        chtfms.ImageOnly(chtfms.Normalize())
     ])
 
     normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
